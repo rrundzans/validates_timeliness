@@ -48,7 +48,7 @@ module ValidatesTimeliness
 
     def setup(klass)
       setup_timeliness_validated_attributes klass
-    end unless respond_to?(:deprecated_setup)
+    end unless method_defined?(:deprecated_setup)
 
     def setup_timeliness_validated_attributes(klass)
       if klass.respond_to?(:timeliness_validated_attributes)
