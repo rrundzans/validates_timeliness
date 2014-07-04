@@ -46,9 +46,11 @@ module ValidatesTimeliness
       setup_timeliness_validated_attributes options[:class] if options.key?(:class)
     end
 
-    def setup(klass)
-      setup_timeliness_validated_attributes klass
-    end unless method_defined?(:deprecated_setup)
+    if ActiveModel::VERSION::MAJOR < 4
+      def setup(klass)
+        setup_timeliness_validated_attributes klass
+      end
+    end
 
     def setup_timeliness_validated_attributes(klass)
       if klass.respond_to?(:timeliness_validated_attributes)
